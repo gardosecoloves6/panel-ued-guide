@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ued体育 · 资料索引与信息整理</title>
+    <style>
+        /* 重置与基础 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(145deg, #fde5d0 0%, #fce2c1 35%, #fbd7a5 70%, #f9ce92 100%);
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #2e241d;
+            padding: 24px 20px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page-wrap {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* 顶部导航 */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 22px;
+            background: rgba(255, 245, 235, 0.65);
+            backdrop-filter: blur(8px);
+            border-radius: 44px;
+            margin-bottom: 48px;
+            box-shadow: 0 4px 12px rgba(160, 100, 50, 0.08);
+        }
+        .nav-logo {
+            font-weight: 600;
+            font-size: 1.4rem;
+            letter-spacing: 0.5px;
+            background: #d6945f;
+            color: #fff6ec;
+            padding: 4px 16px;
+            border-radius: 60px;
+            line-height: 1.8;
+        }
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #3f2c1e;
+            font-weight: 480;
+            font-size: 0.95rem;
+            padding: 6px 10px;
+            border-radius: 60px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .nav-links a:hover {
+            background: #dfb48b;
+            color: #261b13;
+        }
+
+        /* hero 区 */
+        .hero {
+            background: #ffffffd9;
+            backdrop-filter: blur(4px);
+            border-radius: 48px;
+            padding: 48px 40px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 12px 28px rgba(170, 100, 40, 0.12);
+            border: 1px solid #f2dbca;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #833f1f, #b1622e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: #4b3829;
+            max-width: 780px;
+            margin-bottom: 22px;
+        }
+        .hero .tagline {
+            display: inline-block;
+            background: #eacab0;
+            color: #311f14;
+            padding: 6px 16px;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 470;
+        }
+
+        /* 卡片通用 */
+        .card {
+            background: #fffaf5;
+            border-radius: 32px;
+            padding: 36px 32px;
+            box-shadow: 0 6px 18px rgba(120, 70, 30, 0.07);
+            border: 1px solid #f3decb;
+        }
+
+        /* 介绍段落 */
+        .intro-section {
+            margin-bottom: 48px;
+        }
+        .intro-section .card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            align-items: flex-start;
+        }
+        .intro-text {
+            flex: 2 1 320px;
+        }
+        .intro-text h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #6b3f21;
+            margin-bottom: 18px;
+            border-left: 6px solid #c28451;
+            padding-left: 18px;
+        }
+        .intro-text p {
+            margin-bottom: 16px;
+            color: #3b2b1f;
+        }
+        .intro-highlight {
+            flex: 1 1 200px;
+            background: #f7e5d4;
+            padding: 20px 18px;
+            border-radius: 28px;
+            border: 1px solid #e7ccb4;
+        }
+        .intro-highlight h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: #794d2a;
+        }
+        .intro-highlight ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .intro-highlight li {
+            padding: 6px 0;
+            border-bottom: 1px dashed #dbbc9f;
+            font-size: 0.95rem;
+        }
+        .intro-highlight li:last-child {
+            border-bottom: none;
+        }
+
+        /* 三个场景模块 — 使用卡片网格 */
+        .scenes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        .scene-card {
+            background: #fffcf8;
+            border-radius: 28px;
+            padding: 26px 22px 28px;
+            box-shadow: 0 4px 14px rgba(140, 90, 50, 0.06);
+            border: 1px solid #eedccb;
+            transition: transform 0.15s ease, box-shadow 0.2s;
+        }
+        .scene-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(150, 95, 45, 0.08);
+        }
+        .scene-card h3 {
+            font-size: 1.25rem;
+            font-weight: 520;
+            margin-bottom: 14px;
+            color: #713f1c;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .scene-card p {
+            color: #3b2b1e;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+        .scene-tag {
+            display: inline-block;
+            background: #e5cbb6;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            color: #2d1d11;
+            font-weight: 460;
+        }
+
+        /* 常见说明区块 (FAQ 摘要) */
+        .faq-section {
+            margin-bottom: 36px;
+        }
+        .faq-section .card {
+            padding: 32px 30px;
+        }
+        .faq-section h2 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #6b3f21;
+            margin-bottom: 24px;
+            border-left: 6px solid #c28451;
+            padding-left: 16px;
+        }
+        .faq-item {
+            padding: 14px 0;
+            border-bottom: 1px solid #eedbcb;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-q {
+            font-weight: 520;
+            color: #482f1d;
+            margin-bottom: 4px;
+        }
+        .faq-a {
+            color: #4d3829;
+            font-size: 0.95rem;
+            padding-left: 12px;
+            border-left: 3px solid #dbaa7c;
+            padding-left: 16px;
+            margin-top: 6px;
+        }
+
+        /* 提示 / 说明条 */
+        .note-strip {
+            background: #f2e1d1;
+            border-radius: 60px;
+            padding: 12px 24px;
+            display: inline-block;
+            font-size: 0.9rem;
+            color: #2a1c11;
+            margin-bottom: 28px;
+        }
+
+        /* 底部 */
+        .footer-note {
+            text-align: center;
+            padding: 24px 0 12px;
+            color: #563c28;
+            border-top: 1px solid #e6cfbb;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 820px) {
+            .hero h1 { font-size: 2rem; }
+            .scenes-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 580px) {
+            .top-nav { flex-wrap: wrap; gap: 8px; justify-content: center; padding: 12px 16px; }
+            .nav-links { gap: 10px; flex-wrap: wrap; justify-content: center; }
+            .hero { padding: 32px 20px; }
+            .hero h1 { font-size: 1.7rem; }
+            .scenes-grid { grid-template-columns: 1fr; }
+            .card { padding: 24px 18px; }
+            .intro-section .card { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+        <span class="nav-logo">UED</span>
+        <div class="nav-links">
+            <a href="#intro">资料索引</a>
+            <a href="#scenes">应用场景</a>
+            <a href="#faq">常见说明</a>
+        </div>
+    </nav>
+
+    <!-- hero 区 -->
+    <div class="hero">
+        <h1>整理 · 索引 · 信息结构</h1>
+        <p>
+            用平实的方式梳理 <a href="https://panel-ued.com" style="color: #a5582a; text-decoration: underline; text-underline-offset: 3px; font-weight: 500;">ued体育</a> 的内容脉络，将分散的资料整合为可查阅的模块。这里不提供结论，只做清晰的整理。
+        </p>
+        <span class="tagline">信息卡片 · 场景分类 · 说明摘要</span>
+    </div>
+
+    <!-- 核心介绍 (资料整理视角) -->
+    <section id="intro" class="intro-section">
+        <div class="card">
+            <div class="intro-text">
+                <h2>从资料整理到信息索引</h2>
+                <p>
+                    作为一个持续更新的信息页面，我们从 <a href="https://panel-ued.com" style="color: #a5582a; text-decoration: underline; text-underline-offset: 2px;">ued体育</a> 的公开内容中梳理出相对稳定的结构，包括数据分类、常见概念释义以及模块之间的关联。不追求面面俱到，更看重条目清晰。
+                </p>
+                <p>
+                    页面采用轻量导航式布局，将内容按「资料索引 — 应用场景 — 常见说明」三层展开。每个模块都可以独立查阅，也彼此参照。如果你在寻找某个具体条目，可以直接从索引部分开始。
+                </p>
+            </div>
+            <div class="intro-highlight">
+                <h3>索引特点</h3>
+                <ul>
+                    <li>按主题分组整理</li>
+                    <li>条目附简要说明</li>
+                    <li>不同场景交叉引用</li>
+                    <li>定期核对更新</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 三个场景模块 -->
+    <section id="scenes" style="margin-bottom: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; flex-wrap: wrap;">
+            <h2 style="font-size: 1.6rem; font-weight: 500; color: #6b3f21; border-left: 6px solid #c28451; padding-left: 16px; margin-bottom: 8px;">三个常见应用场景</h2>
+            <span class="note-strip">场景分类 · 各有侧重</span>
+        </div>
+
+        <div class="scenes-grid">
+            <!-- 场景 1 -->
+            <div class="scene-card">
+                <h3>📋 资料归档</h3>
+                <p>将散落的信息按主题整理成卡片式摘要，便于后续翻阅与对照。每个卡片包含定义、来源与相关链接。</p>
+                <span class="scene-tag">分类 · 标签</span>
+            </div>
+
+            <!-- 场景 2 -->
+            <div class="scene-card">
+                <h3>🔍 快速查阅</h3>
+                <p>通过统一的索引结构，在较长页面中定位具体条目。适合需要反复对照细节的场景，减少翻找时间。</p>
+                <span class="scene-tag">索引 · 锚点</span>
+            </div>
+
+            <!-- 场景 3 -->
+            <div class="scene-card">
+                <h3>🧩 说明摘要</h3>
+                <p>将常见疑惑或容易混淆的概念单独整理为 FAQ 形式，提供简洁的说明，不展开冗长的背景叙述。</p>
+                <span class="scene-tag">问答 · 摘要</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <section id="faq" class="faq-section">
+        <div class="card">
+            <h2>常见说明 · 摘要</h2>
+
+            <div class="faq-item">
+                <div class="faq-q">这个页面是什么性质？</div>
+                <div class="faq-a">一份围绕 <a href="https://panel-ued.com" style="color: #a5582a; text-decoration: underline; text-underline-offset: 2px;">ued体育</a> 的信息整理与索引页，侧重结构清晰，不包含主观评价或诱导性描述。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">资料更新频率如何？</div>
+                <div class="faq-a">随公开内容的变化进行补充和调整，主要修正链接与条目描述，保持索引的有效性。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">为什么只列出三个场景？</div>
+                <div class="faq-a">从常用角度出发，三个场景能覆盖大部分查阅需求。后续也可能根据实际反馈增加新的模块。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">我可以贡献或反馈吗？</div>
+                <div class="faq-a">页面为公开索引性质，如果你发现条目有误或需要补充，可以通过相关途径说明。</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <div class="footer-note">
+        <span>内容整理 · 信息索引 · 以 <a href="https://panel-ued.com" style="color: #7a4929; text-decoration: underline; text-underline-offset: 3px; font-weight: 480;">ued体育</a> 为参考</span>
+        <br>
+        <span style="opacity: 0.6; font-size: 0.8rem; display: inline-block; margin-top: 6px;">页面结构保持独立，仅供参考查阅</span>
+    </div>
+
+</div>
+</body>
+</html>
